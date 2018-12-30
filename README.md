@@ -10,4 +10,5 @@
 	- bound on the error of extremum $\epsilon$
 ## Method
 In short, devide and conquer. First, we divide the initial interval [a, b] into two sub-intervals, and check the value in boundary to update the extremum. Then compute the possible extremum (f(a) + f(b) + s(b-a))/2 into two sub-intervals according to s. If the possible extremum is smaller than current extremum, we drop the interval, otherwise, repeat two steps recursively, until the interval span is smaller than $\epsilon$. 
+
 Since Xsede provides many cores, we can process many valid intervals at the same time. At the very begining, in order to aviod too many idle cores, we generate several intervals and store them in a shared queue (master), then each core (slave) take out interval from queue and search it one by one. When all intervals in master queue are processed, the extremum is found.
